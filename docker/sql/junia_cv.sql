@@ -183,7 +183,7 @@ CREATE TABLE IF NOT EXISTS demandes_partenariat (
 -- Mot de passe : "Admin1234!" (hash bcrypt)
 INSERT INTO users (email, password_hash, role) VALUES
 ('admin@junia.com',
- '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+ '$2y$10$iBW.lIab9HLXff5WPoph5.56cokNlTCsSSiDyHpENG/sIBy.qPT5m',
  'admin');
 
 SET foreign_key_checks = 1;
