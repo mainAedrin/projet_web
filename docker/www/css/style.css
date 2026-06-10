@@ -111,7 +111,7 @@ img { max-width: 100%; display: block; }
 .btn-nav:hover { background: var(--junia-violet-dark); }
 
 /* Menu burger mobile */
-.menu-burger { display: none; }
+.menu-burger { display: none; pointer-events: none; }
 
 /* ================================================================
    MAIN
@@ -551,6 +551,7 @@ textarea { resize: vertical; min-height: 90px; }
         display: flex; flex-direction: column; gap: 5px;
         cursor: pointer; padding: 0.4rem;
         background: none; border: none;
+        pointer-events: auto;
     }
     .menu-burger span {
         width: 26px; height: 3px; background: var(--junia-violet); border-radius: 2px;
@@ -583,11 +584,6 @@ textarea { resize: vertical; min-height: 90px; }
    ================================================================ */
 h1, h2, h3, h4 { text-wrap: balance; }
 p { text-wrap: pretty; }
-
-/* ================================================================
-   TRANSITIONS ENTRE PAGES (Chrome/Edge — dégradation gracieuse)
-   ================================================================ */
-@view-transition { navigation: auto; }
 
 /* ================================================================
    ANIMATIONS À L'ENTRÉE (scroll-driven — @supports)

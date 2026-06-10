@@ -19,6 +19,13 @@
             <span class="logo-text">JUNIA <strong>CV</strong></span>
         </a>
 
+        <!-- Burger AVANT le nav — ne peut pas couvrir les liens -->
+        <button class="menu-burger" id="menu-burger" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <nav class="main-nav" id="main-nav">
             <a href="/index.php">Accueil</a>
 
@@ -42,12 +49,6 @@
                 <a href="/api/logout.php" class="btn-nav">Déconnexion</a>
             <?php endif; ?>
         </nav>
-
-        <button class="menu-burger" id="menu-burger" aria-label="Ouvrir le menu" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
 
     </div>
 </header>
