@@ -1,0 +1,19 @@
+# ─── Environnement & secrets ─────────────────────────────────────
+.env
+*.env.local
+
+# ─── Uploads utilisateurs ─────────────────────────────────────────
+www/uploads/*
+!www/uploads/.gitkeep
+
+# ─── Docker volumes ───────────────────────────────────────────────
+docker/volumes/
+
+# ─── Dépendances / cache ──────────────────────────────────────────
+vendor/
+node_modules/
+.DS_Store
+Thumbs.db
+
+# ─── Logs ─────────────────────────────────────────────────────────
+*.log

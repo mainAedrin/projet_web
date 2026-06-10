@@ -13,6 +13,11 @@ $stmt = $pdo->prepare('SELECT * FROM etudiants WHERE user_id = ?');
 $stmt->execute([$userId]);
 $e = $stmt->fetch();
 
+if (!$e) {
+    header('Location: /pages/formulaire-cv.php');
+    exit;
+}
+
 $id = (int) $e['id'];
 $get = function (string $sql) use ($pdo, $id) {
     $s = $pdo->prepare($sql);
