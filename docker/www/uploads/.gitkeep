@@ -1,0 +1,2 @@
+# Ce fichier existe uniquement pour que Git track le dossier uploads/.
+# Les vrais fichiers uploadés sont ignorés via .gitignore.
