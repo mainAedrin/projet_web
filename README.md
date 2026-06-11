@@ -64,8 +64,8 @@ docker compose down -v       # arrête + supprime le volume MySQL (repart de zé
 | Rôle | Email | Mot de passe |
 |------|-------|--------------|
 | Administrateur | admin@junia.com | Admin1234! |
-| Entreprise | *(créer via l'admin)* | *(généré par l'admin)* |
-| Étudiant | *(s'inscrire avec @junia.com)* | *(choisi à l'inscription)* |
+| Entreprise | contact@techcorp-solutions.fr | Junia1234! |
+| Étudiant | alice.martin@junia.com | Junia1234! |
 
 > Les étudiants doivent obligatoirement utiliser une adresse `@junia.com`.
 

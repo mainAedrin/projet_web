@@ -33,7 +33,10 @@ require_once __DIR__ . '/../inc/header.php';
     </div>
     <div>
         <label for="f-competence">Compétence</label>
-        <input type="text" id="f-competence" placeholder="Ex : Python, SQL…">
+        <div class="autocomplete-wrapper">
+            <input type="text" id="f-competence" placeholder="Ex : Python, SQL…" autocomplete="off">
+            <ul class="autocomplete-liste" id="ac-competence" role="listbox" hidden></ul>
+        </div>
     </div>
     <div>
         <label for="f-promotion">École / promotion</label>

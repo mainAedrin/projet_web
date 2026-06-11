@@ -77,7 +77,103 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     chargerProfils();
+    initAutocomplete('f-competence', 'ac-competence');
 });
+
+// ─── Autocomplétion compétences ──────────────────────────────────
+function initAutocomplete(inputId, listeId) {
+    const input  = document.getElementById(inputId);
+    const liste  = document.getElementById(listeId);
+    if (!input || !liste) return;
+
+    let indexActif = -1;
+    let dernierQ   = '';
+
+    const fermer = () => {
+        liste.hidden = true;
+        liste.innerHTML = '';
+        indexActif = -1;
+    };
+
+    const surbrillance = (idx) => {
+        const items = liste.querySelectorAll('.autocomplete-item');
+        items.forEach((el, i) => el.classList.toggle('actif', i === idx));
+        indexActif = idx;
+    };
+
+    const choisir = (valeur) => {
+        input.value = valeur;
+        fermer();
+        chargerProfils();
+    };
+
+    const afficher = (suggestions) => {
+        liste.innerHTML = '';
+        indexActif = -1;
+
+        if (!suggestions.length) { fermer(); return; }
+
+        const q = input.value.trim().toLowerCase();
+        suggestions.forEach(s => {
+            const li = document.createElement('li');
+            li.className = 'autocomplete-item';
+            li.setAttribute('role', 'option');
+
+            // Met en gras la partie qui correspond à la saisie
+            const idx = s.toLowerCase().indexOf(q);
+            if (idx >= 0) {
+                li.innerHTML = escHtml(s.slice(0, idx))
+                    + '<strong>' + escHtml(s.slice(idx, idx + q.length)) + '</strong>'
+                    + escHtml(s.slice(idx + q.length));
+            } else {
+                li.textContent = s;
+            }
+
+            li.addEventListener('mousedown', (e) => { e.preventDefault(); choisir(s); });
+            liste.appendChild(li);
+        });
+
+        liste.hidden = false;
+    };
+
+    const fetchSuggestions = debounce(async () => {
+        const q = input.value.trim();
+        if (q === dernierQ) return;
+        dernierQ = q;
+
+        if (q.length < 1) { fermer(); return; }
+
+        const res = await fetch('/api/suggestions.php?q=' + encodeURIComponent(q));
+        const data = await res.json();
+        // Vérifier que la saisie n'a pas changé entre temps
+        if (input.value.trim() === q) afficher(data);
+    }, 200);
+
+    input.addEventListener('input', () => { fetchSuggestions(); });
+
+    input.addEventListener('keydown', (e) => {
+        const items = liste.querySelectorAll('.autocomplete-item');
+        if (!items.length) return;
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            surbrillance(Math.min(indexActif + 1, items.length - 1));
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            surbrillance(Math.max(indexActif - 1, -1));
+            if (indexActif === -1) input.value = dernierQ;
+        } else if (e.key === 'Enter' && indexActif >= 0) {
+            e.preventDefault();
+            choisir(items[indexActif].textContent);
+        } else if (e.key === 'Escape') {
+            fermer();
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!input.contains(e.target) && !liste.contains(e.target)) fermer();
+    });
+}
 
 // Petit debounce pour ne pas spammer l'API à chaque frappe
 function debounce(fn, delai) {

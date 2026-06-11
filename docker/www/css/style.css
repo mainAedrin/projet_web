@@ -1050,3 +1050,40 @@ scrollbar-width: thin;
 @media (max-width: 768px) {
     .charts-grille { grid-template-columns: 1fr; }
 }
+
+/* ================================================================
+   AUTOCOMPLÉTION
+   ================================================================ */
+.autocomplete-wrapper {
+    position: relative;
+}
+.autocomplete-liste {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0; right: 0;
+    background: var(--blanc);
+    border: 1.5px solid var(--junia-violet);
+    border-radius: var(--rayon-sm);
+    box-shadow: var(--ombre-forte);
+    list-style: none;
+    margin: 0; padding: 0.3rem 0;
+    z-index: 200;
+    max-height: 260px;
+    overflow-y: auto;
+}
+.autocomplete-item {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.92rem;
+    cursor: pointer;
+    color: var(--texte);
+    transition: background var(--transition);
+}
+.autocomplete-item strong {
+    color: var(--junia-violet);
+    font-weight: 700;
+}
+.autocomplete-item:hover,
+.autocomplete-item.actif {
+    background: var(--junia-violet-light);
+    color: var(--junia-violet);
+}
