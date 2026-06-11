@@ -26,6 +26,47 @@
     --gradient: linear-gradient(120deg, var(--junia-violet), var(--junia-orange));
 }
 
+/* ================================================================
+   MODE SOMBRE
+   ================================================================ */
+[data-theme="dark"] {
+    --texte:              #ede9f4;
+    --texte-doux:         #a99fba;
+    --bordure:            #332548;
+    --fond:               #110e1a;
+    --blanc:              #1c1629;
+    --junia-violet-light: #261840;
+    --ombre:              0 4px 18px rgba(0, 0, 0, 0.45);
+    --ombre-forte:        0 10px 34px rgba(0, 0, 0, 0.6);
+}
+
+/* Bouton toggle thème */
+.theme-toggle {
+    background: none;
+    border: 1.5px solid var(--bordure);
+    border-radius: 999px;
+    width: 34px; height: 34px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--texte-doux);
+    transition: var(--transition);
+    flex-shrink: 0;
+    padding: 0;
+}
+.theme-toggle:hover { border-color: var(--junia-violet); color: var(--junia-violet); }
+
+/* Swap icônes selon le thème actif */
+.icon-sun  { display: block; }
+.icon-moon { display: none;  }
+[data-theme="dark"] .icon-sun  { display: none;  }
+[data-theme="dark"] .icon-moon { display: block; }
+
+/* Transitions douces sur les éléments clés lors du changement de thème */
+body, .site-header, .site-footer, .bloc-form, .stat-carte,
+.carte-invitation, .carte-profil, .form-auth, input, select, textarea {
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
 /* ─── Reset léger ────────────────────────────────────────────── */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -127,7 +168,7 @@ img { max-width: 100%; display: block; }
 /* ================================================================
    BOUTONS & FORMULAIRES
    ================================================================ */
-.btn-principal, .btn-secondaire {
+.btn-principal, .btn-secondaire, .btn-danger {
     display: inline-block;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
@@ -911,4 +952,101 @@ scrollbar-width: thin;
     .hero { padding: 2.5rem 1.4rem; }
     .etapes { grid-template-columns: 1fr; }
     .partenaires-logos { gap: 0.7rem; }
+}
+
+/* ================================================================
+   CARTES INVITATION (étudiant)
+   ================================================================ */
+.carte-invitation {
+    background: var(--blanc);
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: box-shadow var(--transition);
+}
+.carte-invitation:hover { box-shadow: var(--ombre); }
+
+.carte-invitation-entete {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.carte-invitation-entete h3 {
+    font-size: 1.1rem;
+    color: var(--junia-violet);
+    margin: 0 0 0.25rem;
+}
+.secteur {
+    font-size: 0.82rem;
+    color: var(--texte-leger);
+}
+
+.badge-statut {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.statut-attente  { background: #fff8e1; color: #b45309; }
+.statut-acceptee { background: #ecfdf5; color: #15803d; }
+.statut-refusee  { background: #fef2f2; color: #b91c1c; }
+
+.invitation-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--bordure);
+}
+.invitation-details {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.4rem 1.2rem;
+    font-size: 0.92rem;
+    margin: 0;
+}
+.invitation-details dt {
+    color: var(--texte-leger);
+    font-weight: 600;
+}
+.invitation-details dd {
+    margin: 0;
+    color: var(--texte);
+}
+
+/* ================================================================
+   GRAPHIQUES ADMIN (Chart.js)
+   ================================================================ */
+.charts-grille {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+.chart-carte {
+    background: var(--blanc);
+    border: 1px solid var(--bordure);
+    border-radius: var(--rayon);
+    padding: 1.5rem;
+    box-shadow: var(--ombre);
+}
+.chart-carte h2 {
+    font-size: 1rem;
+    margin-bottom: 1.2rem;
+    color: var(--junia-violet);
+}
+.chart-wrap {
+    position: relative;
+    height: 240px;
+}
+.chart-wrap canvas { max-height: 240px; }
+
+@media (max-width: 768px) {
+    .charts-grille { grid-template-columns: 1fr; }
 }

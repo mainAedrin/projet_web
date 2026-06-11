@@ -31,6 +31,21 @@
 </footer>
 
 <script>
+/* ── Mode sombre ────────────────────────────────────────────── */
+(function () {
+    var btn  = document.getElementById('theme-toggle');
+    var html = document.documentElement;
+    if (!btn) return;
+
+    btn.addEventListener('click', function () {
+        var isDark = html.getAttribute('data-theme') === 'dark';
+        var next   = isDark ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('junia-theme', next);
+        window.dispatchEvent(new CustomEvent('themechange', { detail: { theme: next } }));
+    });
+}());
+
 /* ── Menu burger mobile ─────────────────────────────────────── */
 (function () {
     var burger = document.getElementById('menu-burger');

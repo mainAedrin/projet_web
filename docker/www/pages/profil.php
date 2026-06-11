@@ -134,6 +134,7 @@ require_once __DIR__ . '/../inc/header.php';
 
     <div class="cv-actions">
         <a class="btn-principal" href="/pages/formulaire-cv.php">Modifier mon CV</a>
+        <a class="btn-secondaire" href="/api/cv-pdf.php" target="_blank">Télécharger en PDF</a>
         <button class="btn-danger" id="btn-supprimer-compte">Supprimer mon compte</button>
     </div>
 </div>

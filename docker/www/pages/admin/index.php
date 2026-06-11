@@ -34,6 +34,18 @@ require_once __DIR__ . '/../../inc/header.php';
     </div>
 </div>
 
+<!-- ─── Graphiques ─── -->
+<div class="charts-grille">
+    <div class="chart-carte">
+        <h2>Étudiants vs Entreprises</h2>
+        <div class="chart-wrap"><canvas id="graphique-comptes"></canvas></div>
+    </div>
+    <div class="chart-carte">
+        <h2>Domaines les plus recherchés</h2>
+        <div class="chart-wrap"><canvas id="graphique-domaines"></canvas></div>
+    </div>
+</div>
+
 <!-- ─── Création d'un compte entreprise ─── -->
 <div class="bloc-form">
     <h2>Créer un compte entreprise</h2>
@@ -62,5 +74,6 @@ require_once __DIR__ . '/../../inc/header.php';
     <div id="liste-comptes"></div>
 </div>
 
+<script src="/js/chart.umd.min.js"></script>
 <script src="/js/admin.js"></script>
 <?php require_once __DIR__ . '/../../inc/footer.php'; ?>

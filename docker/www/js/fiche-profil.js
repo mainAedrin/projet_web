@@ -87,6 +87,7 @@ async function chargerFiche() {
             </div>
             <div class="cv-actions">
                 <button class="btn-principal" id="btn-convoquer">Convoquer à un entretien</button>
+                <a class="btn-secondaire" href="/api/cv-pdf.php?id=${id}" target="_blank">Télécharger le CV (PDF)</a>
                 <a class="btn-secondaire" href="/pages/catalogue.php">Retour au catalogue</a>
             </div>
         </div>

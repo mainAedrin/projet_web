@@ -8,7 +8,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Open+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css?v=<?= filemtime($_SERVER['DOCUMENT_ROOT'] . '/css/style.css') ?>">
+    <script>
+        /* Applique le thème AVANT le rendu pour éviter le flash */
+        (function () {
+            var t = localStorage.getItem('junia-theme');
+            if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+        }());
+    </script>
 </head>
 <body>
 <header class="site-header">
@@ -37,6 +44,7 @@
             <?php elseif (role_actuel() === 'etudiant'): ?>
                 <a href="/pages/profil.php">Mon CV</a>
                 <a href="/pages/formulaire-cv.php">Modifier</a>
+                <a href="/pages/mes-invitations.php">Mes invitations</a>
                 <a href="/api/logout.php" class="btn-nav">Déconnexion</a>
 
             <?php elseif (role_actuel() === 'entreprise'): ?>
@@ -48,6 +56,21 @@
                 <a href="/pages/admin/index.php">Administration</a>
                 <a href="/api/logout.php" class="btn-nav">Déconnexion</a>
             <?php endif; ?>
+
+            <button class="theme-toggle" id="theme-toggle" aria-label="Basculer le mode sombre">
+                <!-- Soleil (mode clair actif) -->
+                <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <circle cx="12" cy="12" r="4"/>
+                    <line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+                    <line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/>
+                    <line x1="4.9" y1="4.9" x2="7.1" y2="7.1"/><line x1="16.9" y1="16.9" x2="19.1" y2="19.1"/>
+                    <line x1="4.9" y1="19.1" x2="7.1" y2="16.9"/><line x1="16.9" y1="7.1" x2="19.1" y2="4.9"/>
+                </svg>
+                <!-- Lune (mode sombre actif) -->
+                <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                </svg>
+            </button>
         </nav>
 
     </div>
